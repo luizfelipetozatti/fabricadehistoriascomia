@@ -449,6 +449,49 @@
         font-size: 36px;
       }
     }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+      z-index: 100;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-5px);
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .whatsapp-float img {
+        width: 36px;
+        height: 36px;
+    }
+
+    @media (max-width: 768px) {
+        .whatsapp-float {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+        }
+        .whatsapp-float img {
+            width: 28px;
+            height: 28px;
+        }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -649,6 +692,12 @@
     <p style="margin-top: 10px;">Criação de histórias educativas | Inteligência Artificial para pais | Educação infantil personalizada</p>
    </div>
   </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/5516996133004" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+    <img src="images/WhatsApp_Logo_PNG_Sem_Fundo_Transparente.png" alt="WhatsApp">
+  </a>
+
   <script>
     const defaultConfig = {
       main_title: "Fábrica de Histórias com IA",
