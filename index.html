@@ -437,6 +437,15 @@
       font-size: 50px;
       color: white;
       border: 4px solid var(--accent-gold);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
     .author-credential {
@@ -448,6 +457,8 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      white-space: nowrap;
+      display: inline-block;
     }
     
     .author-info h3 {
@@ -770,6 +781,13 @@
       justify-content: center;
       font-size: 24px;
       color: white;
+      overflow: hidden;
+    }
+    
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
     .testimonial-info h5 {
@@ -1535,57 +1553,46 @@
     </div>
   </section>
 
-  <!-- Author Section -->
-  <section class="author-section">
+  <!-- What's Inside Section -->
+  <section class="whats-inside">
     <div class="container">
-      <div class="author-content">
-        <div class="author-badge">
-          <div class="author-avatar">👨‍👧‍👦</div>
-          <span class="author-credential">Engenheiro & Pai de 3</span>
-        </div>
-        <div class="author-info">
-          <h3>Por Luiz Tozatti</h3>
-          <p>
-            Sou engenheiro, entusiasta de tecnologia e, acima de tudo, pai de 3 filhos. Desenvolvi este método após perceber o poder da IA para criar histórias personalizadas que ensinam valores importantes de forma lúdica e envolvente. Agora, quero compartilhar esse conhecimento com outros pais que desejam fortalecer o vínculo com seus filhos através de histórias únicas.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Problem Section -->
-  <section class="problem-section">
-    <div class="container">
-      <h2>Você se <span>identifica</span> com isso?</h2>
-      <p class="section-subtitle">São desafios que muitos pais enfrentam no dia a dia...</p>
+      <h2>O Que Você Vai <span>Receber</span></h2>
+      <p class="section-subtitle">Um guia completo com tudo que você precisa para começar hoje</p>
       
-      <div class="problem-grid">
-        <div class="problem-card">
-          <span class="problem-icon">😓</span>
-          <div>
-            <h4>Falta de tempo</h4>
-            <p>Rotina corrida e sem tempo para criar atividades educativas para os filhos</p>
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Guia Completo de IA para Histórias</h4>
+            <p>Passo a passo detalhado de como usar ferramentas de IA para criar narrativas educativas personalizadas</p>
           </div>
         </div>
-        <div class="problem-card">
-          <span class="problem-icon">📚</span>
-          <div>
-            <h4>Histórias repetitivas</h4>
-            <p>Sempre os mesmos livros e histórias que já não prendem a atenção</p>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Tutorial de Ilustrações com IA</h4>
+            <p>Aprenda a criar ilustrações profissionais que encantam as crianças, mesmo sem saber desenhar</p>
           </div>
         </div>
-        <div class="problem-card">
-          <span class="problem-icon">🎨</span>
-          <div>
-            <h4>Sem habilidade artística</h4>
-            <p>Não sabe desenhar ou criar ilustrações para as histórias</p>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Banco de Prompts Prontos</h4>
+            <p>Prompts testados e otimizados para diferentes idades, valores e temas educativos</p>
           </div>
         </div>
-        <div class="problem-card">
-          <span class="problem-icon">💡</span>
-          <div>
-            <h4>Dificuldade para ensinar valores</h4>
-            <p>Quer transmitir valores mas não sabe como fazer de forma natural</p>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Exemplos Práticos Completos</h4>
+            <p>Histórias completas como exemplo para você se inspirar e adaptar</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Dicas de Personalização Avançadas</h4>
+            <p>Como adaptar cada história para a personalidade única do seu filho</p>
           </div>
         </div>
       </div>
@@ -1633,51 +1640,44 @@
     </div>
   </section>
 
-  <!-- What's Inside Section -->
-  <section class="whats-inside">
+  <!-- Problem Section
+  <section class="problem-section">
     <div class="container">
-      <h2>O Que Você Vai <span>Receber</span></h2>
-      <p class="section-subtitle">Um guia completo com tudo que você precisa para começar hoje</p>
+      <h2>Você se <span>identifica</span> com isso?</h2>
+      <p class="section-subtitle">São desafios que muitos pais enfrentam no dia a dia...</p>
       
-      <div class="features-list">
-        <div class="feature-item">
-          <span class="feature-check">✅</span>
-          <div class="feature-content">
-            <h4>Guia Completo de IA para Histórias</h4>
-            <p>Passo a passo detalhado de como usar ferramentas de IA para criar narrativas educativas personalizadas</p>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-icon">😓</span>
+          <div>
+            <h4>Falta de tempo</h4>
+            <p>Rotina corrida e sem tempo para criar atividades educativas para os filhos</p>
           </div>
         </div>
-        <div class="feature-item">
-          <span class="feature-check">✅</span>
-          <div class="feature-content">
-            <h4>Tutorial de Ilustrações com IA</h4>
-            <p>Aprenda a criar ilustrações profissionais que encantam as crianças, mesmo sem saber desenhar</p>
+        <div class="problem-card">
+          <span class="problem-icon">📚</span>
+          <div>
+            <h4>Histórias repetitivas</h4>
+            <p>Sempre os mesmos livros e histórias que já não prendem a atenção</p>
           </div>
         </div>
-        <div class="feature-item">
-          <span class="feature-check">✅</span>
-          <div class="feature-content">
-            <h4>Banco de Prompts Prontos</h4>
-            <p>Prompts testados e otimizados para diferentes idades, valores e temas educativos</p>
+        <div class="problem-card">
+          <span class="problem-icon">🎨</span>
+          <div>
+            <h4>Sem habilidade artística</h4>
+            <p>Não sabe desenhar ou criar ilustrações para as histórias</p>
           </div>
         </div>
-        <div class="feature-item">
-          <span class="feature-check">✅</span>
-          <div class="feature-content">
-            <h4>Exemplos Práticos Completos</h4>
-            <p>Histórias completas como exemplo para você se inspirar e adaptar</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <span class="feature-check">✅</span>
-          <div class="feature-content">
-            <h4>Dicas de Personalização Avançadas</h4>
-            <p>Como adaptar cada história para a personalidade única do seu filho</p>
+        <div class="problem-card">
+          <span class="problem-icon">💡</span>
+          <div>
+            <h4>Dificuldade para ensinar valores</h4>
+            <p>Quer transmitir valores mas não sabe como fazer de forma natural</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Testimonials Section -->
   <section class="testimonials">
@@ -1691,7 +1691,9 @@
             "Incrível! Consegui criar histórias maravilhosas para minha filha em minutos. Ela adora e sempre pede mais. Valeu cada centavo!"
           </p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">👩</div>
+            <div class="testimonial-avatar">
+              <img src="images/people02.jpg" alt="Maria Silva">
+            </div>
             <div class="testimonial-info">
               <h5>Maria Silva</h5>
               <span>Mãe de 2 filhos</span>
@@ -1705,7 +1707,9 @@
             "Como pai, sempre quis ensinar valores pros meus filhos de forma natural. Com esse ebook, criei histórias personalizadas que eles amam!"
           </p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">👨</div>
+            <div class="testimonial-avatar">
+              <img src="images/people01.jpg" alt="Carlos Mendes">  
+            </div>
             <div class="testimonial-info">
               <h5>Carlos Mendes</h5>
               <span>Pai de 3 filhos</span>
@@ -1719,7 +1723,9 @@
             "Eu não sabia nada de IA e em menos de 1 hora já tinha criado a primeira história ilustrada. Meu filho ficou encantado ao se ver como personagem!"
           </p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">👩</div>
+            <div class="testimonial-avatar">
+              <img src="images/people03.jpg" alt="Ana Rodrigues">
+            </div>
             <div class="testimonial-info">
               <h5>Ana Rodrigues</h5>
               <span>Professora e mãe</span>
@@ -1801,6 +1807,26 @@
         </p>
         <div class="guarantee-highlight">
           ✅ Você não tem NADA a perder!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author Section -->
+  <section class="author-section">
+    <div class="container">
+      <div class="author-content">
+        <div class="author-badge">
+          <div class="author-avatar">
+            <img src="images/luiz felipe tozatti software_engineer_engenheiro de software_AWS_software developer_SQL_backend-java.jpeg" alt="Luiz Felipe Tozatti">
+          </div>
+          <span class="author-credential">Pai de 3</span>
+        </div>
+        <div class="author-info">
+          <h3>Por Luiz Tozatti</h3>
+          <p>
+            Sou engenheiro de software, entusiasta de tecnologia e, acima de tudo, pai de 3 filhos. Desenvolvi este método após perceber o poder da IA para criar histórias personalizadas que ensinam valores importantes de forma lúdica e envolvente. Agora, quero compartilhar esse conhecimento com outros pais que desejam fortalecer o vínculo com seus filhos através de histórias únicas.
+          </p>
         </div>
       </div>
     </div>
