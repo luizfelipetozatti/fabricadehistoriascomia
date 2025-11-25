@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fábrica de Histórias com IA - Crie Histórias Mágicas e Educativas para Crianças</title>
   
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <!-- Facebook Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -97,6 +102,21 @@
   
   <script src="/_sdk/element_sdk.js"></script>
   <style>
+    :root {
+      --primary-gradient-start: #0a4d68;
+      --primary-gradient-mid: #088395;
+      --primary-gradient-end: #05bfdb;
+      --accent-gold: #f5c842;
+      --accent-gold-dark: #d4a832;
+      --text-dark: #1a202c;
+      --text-light: #ffffff;
+      --bg-light: #f0f9ff;
+      --bg-card: #ffffff;
+      --success-green: #10b981;
+      --shadow-soft: 0 10px 40px rgba(8, 131, 149, 0.15);
+      --shadow-strong: 0 20px 60px rgba(8, 131, 149, 0.25);
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -104,14 +124,23 @@
     }
     
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #2d3748;
+      font-family: 'Nunito', 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: var(--text-dark);
       overflow-x: hidden;
+      background: var(--bg-light);
+    }
+    
+    html {
+      scroll-behavior: smooth;
     }
     
     html, body {
       height: 100%;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
     }
     
     .container {
@@ -120,136 +149,471 @@
       padding: 0 20px;
     }
     
+    /* Urgency Bar */
+    .urgency-bar {
+      background: linear-gradient(90deg, #dc2626 0%, #ff0000 100%);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: pulse-urgency 2s infinite;
+    }
+    
+    .urgency-bar span {
+      color: var(--accent-gold);
+      font-weight: 800;
+    }
+    
+    @keyframes pulse-urgency {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.9; }
+    }
+    
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(160deg, var(--primary-gradient-start) 0%, var(--primary-gradient-mid) 50%, var(--primary-gradient-end) 100%);
       color: white;
-      padding: 60px 20px;
+      padding: 80px 20px 100px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     
     .hero::before {
-      content: '✨';
+      content: '';
       position: absolute;
-      font-size: 100px;
-      opacity: 0.1;
-      top: 20px;
-      left: 10%;
-      animation: float 6s ease-in-out infinite;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(5, 191, 219, 0.3) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      animation: float-glow 8s ease-in-out infinite;
     }
     
     .hero::after {
-      content: '📚';
+      content: '';
       position: absolute;
-      font-size: 80px;
-      opacity: 0.1;
-      bottom: 30px;
-      right: 10%;
-      animation: float 5s ease-in-out infinite;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(245, 200, 66, 0.2) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      animation: float-glow 6s ease-in-out infinite reverse;
     }
     
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+    /* Floating elements */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .floating-star {
+      position: absolute;
+      font-size: 24px;
+      opacity: 0.4;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    
+    .floating-star:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+    .floating-star:nth-child(2) { top: 25%; right: 15%; animation-delay: 0.5s; }
+    .floating-star:nth-child(3) { top: 60%; left: 5%; animation-delay: 1s; }
+    .floating-star:nth-child(4) { top: 70%; right: 8%; animation-delay: 1.5s; }
+    .floating-star:nth-child(5) { top: 40%; left: 85%; animation-delay: 2s; }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.2); }
+    }
+    
+    @keyframes float-glow {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, -30px); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      background: rgba(245, 200, 66, 0.2);
+      border: 2px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+      animation: bounce-in 0.6s ease-out;
+    }
+    
+    @keyframes bounce-in {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     
     .hero h1 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 1;
+      font-size: 52px;
+      font-weight: 900;
+      margin-bottom: 25px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      line-height: 1.2;
+      letter-spacing: -1px;
     }
     
-    .hero p {
+    .hero h1 .highlight {
+      color: var(--accent-gold);
+      position: relative;
+    }
+    
+    .hero p.subtitle {
       font-size: 22px;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
       opacity: 0.95;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-      position: relative;
-      z-index: 1;
+      line-height: 1.7;
+    }
+    
+    .hero-features {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .hero-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .hero-feature-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
     }
     
     .cta-button {
-      background: #f6ad55;
-      color: white;
-      padding: 20px 50px;
-      font-size: 22px;
-      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--text-dark);
+      padding: 22px 55px;
+      font-size: 20px;
+      font-weight: 800;
       border: none;
-      border-radius: 50px;
+      border-radius: 60px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(246, 173, 85, 0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 40px rgba(245, 200, 66, 0.4);
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
     }
     
     .cta-button:hover {
-      background: #ed8936;
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(246, 173, 85, 0.5);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(245, 200, 66, 0.5);
     }
     
-    .price-tag {
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-subtext {
       margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .price-container {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .original-price {
+      font-size: 24px;
+      text-decoration: line-through;
+      color: #ff0000;
+      opacity: 0.9;
+    }
+    
+    .current-price {
+      font-size: 48px;
+      font-weight: 900;
+      color: #00ff37;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .discount-badge {
+      background: #dc2626;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      animation: shake 0.5s ease-in-out infinite;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    
+    /* Author Section */
+    .author-section {
+      padding: 80px 20px;
+      background: white;
+    }
+    
+    .author-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .author-badge {
+      min-width: 180px;
+      text-align: center;
+    }
+    
+    .author-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-gradient-mid) 0%, var(--primary-gradient-end) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 50px;
+      color: white;
+      border: 4px solid var(--accent-gold);
+    }
+    
+    .author-credential {
+      background: var(--success-green);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .author-info h3 {
+      font-size: 28px;
+      color: var(--primary-gradient-start);
+      margin-bottom: 15px;
+    }
+    
+    .author-info p {
+      font-size: 17px;
+      color: #4a5568;
+      line-height: 1.8;
+    }
+    
+    /* Problem/Solution Section */
+    .problem-section {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, var(--bg-light) 0%, white 100%);
+    }
+    
+    .problem-section h2 {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+    
+    .problem-section h2 span {
+      color: var(--primary-gradient-mid);
+    }
+    
+    .problem-section .section-subtitle {
+      text-align: center;
       font-size: 18px;
-      font-weight: 600;
-      position: relative;
-      z-index: 1;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+    
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .problem-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+      border-left: 4px solid #ef4444;
+    }
+    
+    .problem-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-strong);
+    }
+    
+    .problem-icon {
+      font-size: 36px;
+      flex-shrink: 0;
+    }
+    
+    .problem-card h4 {
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    
+    .problem-card p {
+      font-size: 15px;
+      color: #64748b;
     }
     
     /* Benefits Section */
     .benefits {
-      padding: 80px 20px;
-      background: #f7fafc;
+      padding: 100px 20px;
+      background: linear-gradient(160deg, var(--primary-gradient-start) 0%, var(--primary-gradient-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .benefits::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      top: 0;
+      left: 0;
     }
     
     .benefits h2 {
       text-align: center;
-      font-size: 40px;
-      margin-bottom: 60px;
-      color: #2d3748;
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: white;
+      position: relative;
+    }
+    
+    .benefits .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 0 auto 60px;
+      position: relative;
     }
     
     .benefits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
       max-width: 1100px;
       margin: 0 auto;
+      position: relative;
     }
     
     .benefit-card {
-      background: white;
+      background: rgba(255,255,255,0.95);
       padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
+      border-radius: 24px;
+      box-shadow: var(--shadow-strong);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent-gold) 0%, var(--primary-gradient-end) 100%);
     }
     
     .benefit-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
     }
     
     .benefit-icon {
-      font-size: 60px;
-      margin-bottom: 20px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary-gradient-mid) 0%, var(--primary-gradient-end) 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 25px;
     }
     
     .benefit-card h3 {
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 15px;
-      color: #667eea;
+      color: var(--primary-gradient-start);
     }
     
     .benefit-card p {
@@ -260,73 +624,203 @@
     
     /* What's Inside Section */
     .whats-inside {
-      padding: 80px 20px;
+      padding: 100px 20px;
       background: white;
     }
     
     .whats-inside h2 {
       text-align: center;
-      font-size: 40px;
-      margin-bottom: 60px;
-      color: #2d3748;
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+    
+    .whats-inside h2 span {
+      color: var(--primary-gradient-mid);
+    }
+    
+    .whats-inside .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto 60px;
     }
     
     .features-list {
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto;
     }
     
     .feature-item {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 30px;
-      padding: 25px;
-      background: #f7fafc;
-      border-radius: 15px;
+      margin-bottom: 25px;
+      padding: 30px;
+      background: linear-gradient(135deg, var(--bg-light) 0%, white 100%);
+      border-radius: 20px;
       transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
     
     .feature-item:hover {
-      background: #edf2f7;
+      border-color: var(--primary-gradient-end);
       transform: translateX(10px);
+      box-shadow: var(--shadow-soft);
     }
     
     .feature-check {
-      font-size: 30px;
-      margin-right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-right: 25px;
       flex-shrink: 0;
     }
     
     .feature-content h4 {
       font-size: 20px;
-      margin-bottom: 8px;
-      color: #667eea;
+      margin-bottom: 10px;
+      color: var(--primary-gradient-start);
+      font-weight: 700;
     }
     
     .feature-content p {
-      color: #4a5568;
+      color: #64748b;
       font-size: 16px;
+      line-height: 1.7;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      padding: 100px 20px;
+      background: linear-gradient(180deg, var(--bg-light) 0%, white 100%);
+    }
+    
+    .testimonials h2 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+    
+    .testimonials .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-card {
+      background: white;
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      font-size: 80px;
+      color: var(--primary-gradient-end);
+      opacity: 0.2;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .testimonial-content {
+      font-size: 16px;
+      color: #4a5568;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .testimonial-avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-gradient-mid) 0%, var(--primary-gradient-end) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+    }
+    
+    .testimonial-info h5 {
+      font-size: 17px;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+    }
+    
+    .testimonial-info span {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+    
+    .testimonial-stars {
+      color: var(--accent-gold);
+      font-size: 16px;
+      margin-top: 5px;
     }
     
     /* Social Proof Section */
     .social-proof {
       padding: 80px 20px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(160deg, var(--primary-gradient-start) 0%, var(--primary-gradient-mid) 100%);
       color: white;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-proof::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+      top: 0;
+      left: 0;
     }
     
     .social-proof h2 {
-      font-size: 40px;
-      margin-bottom: 40px;
+      font-size: 38px;
+      margin-bottom: 50px;
+      position: relative;
     }
     
     .stats {
       display: flex;
       justify-content: center;
-      gap: 60px;
+      gap: 80px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      position: relative;
     }
     
     .stat-item {
@@ -334,110 +828,532 @@
     }
     
     .stat-number {
-      font-size: 50px;
-      font-weight: 800;
+      font-size: 56px;
+      font-weight: 900;
       display: block;
       margin-bottom: 10px;
+      color: var(--accent-gold);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     
     .stat-label {
       font-size: 18px;
       opacity: 0.9;
+      font-weight: 600;
     }
     
     /* Guarantee Section */
     .guarantee {
-      padding: 80px 20px;
-      background: #f7fafc;
+      padding: 100px 20px;
+      background: white;
       text-align: center;
     }
     
     .guarantee-box {
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto;
-      background: white;
-      padding: 50px 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      border: 3px solid #48bb78;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      padding: 60px 50px;
+      border-radius: 30px;
+      box-shadow: var(--shadow-soft);
+      border: 3px solid var(--success-green);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .guarantee-box::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: var(--success-green);
+      opacity: 0.1;
+      border-radius: 50%;
     }
     
     .guarantee-icon {
-      font-size: 80px;
-      margin-bottom: 20px;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      margin: 0 auto 30px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
     }
     
     .guarantee h2 {
       font-size: 36px;
       margin-bottom: 20px;
-      color: #2d3748;
+      color: var(--text-dark);
     }
     
     .guarantee p {
       font-size: 18px;
       color: #4a5568;
       line-height: 1.8;
+      margin-bottom: 25px;
+    }
+    
+    .guarantee-highlight {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--success-green);
+      display: inline-block;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    /* Pricing Section */
+    .pricing {
+      padding: 100px 20px;
+      background: linear-gradient(180deg, var(--bg-light) 0%, white 100%);
+    }
+    
+    .pricing h2 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+    
+    .pricing .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 30px;
+      box-shadow: var(--shadow-strong);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .pricing-badge {
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background: #dc2626;
+      color: white;
+      padding: 8px 50px;
+      font-size: 14px;
+      font-weight: 700;
+      transform: rotate(45deg);
+      text-transform: uppercase;
+    }
+    
+    .pricing-header {
+      background: linear-gradient(160deg, var(--primary-gradient-start) 0%, var(--primary-gradient-mid) 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .pricing-header h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    
+    .pricing-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .pricing-original {
+      font-size: 24px;
+      text-decoration: line-through;
+      color: #f70000;
+      opacity: 1;
+    }
+    
+    .pricing-current {
+      font-size: 52px;
+      font-weight: 900;
+      color: #00ff37;
+    }
+    
+    .pricing-current span {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .pricing-body {
+      padding: 40px;
+    }
+    
+    .pricing-features {
+      list-style: none;
       margin-bottom: 30px;
+    }
+    
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px 0;
+      font-size: 16px;
+      color: #4a5568;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+    
+    .pricing-features li span {
+      width: 28px;
+      height: 28px;
+      background: var(--success-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    
+    .pricing-cta {
+      text-align: center;
+    }
+    
+    .pricing-cta .cta-button {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .pricing-guarantee {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 100px 20px;
+      background: white;
+    }
+    
+    .faq h2 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 60px;
+      color: var(--text-dark);
+    }
+    
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: var(--bg-light);
+      border-radius: 16px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: var(--shadow-soft);
+    }
+    
+    .faq-question {
+      padding: 25px 30px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--primary-gradient-mid);
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      padding: 0 30px 25px;
+      font-size: 16px;
+      color: #64748b;
+      line-height: 1.8;
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
     }
     
     /* Final CTA Section */
     .final-cta {
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+      padding: 100px 20px;
+      background: linear-gradient(160deg, var(--primary-gradient-start) 0%, var(--primary-gradient-mid) 50%, var(--primary-gradient-end) 100%);
       text-align: center;
       color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(245, 200, 66, 0.15) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
     }
     
     .final-cta h2 {
-      font-size: 42px;
-      margin-bottom: 30px;
-      font-weight: 800;
+      font-size: 46px;
+      margin-bottom: 25px;
+      font-weight: 900;
+      position: relative;
     }
     
     .final-cta p {
       font-size: 20px;
       margin-bottom: 40px;
-      max-width: 600px;
+      max-width: 650px;
       margin-left: auto;
       margin-right: auto;
+      opacity: 0.95;
+      position: relative;
+    }
+    
+    .final-cta .price-container {
+      margin-bottom: 35px;
     }
     
     .cta-button-secondary {
-      background: white;
-      color: #ed8936;
-      padding: 20px 50px;
-      font-size: 22px;
-      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--text-dark);
+      padding: 22px 55px;
+      font-size: 20px;
+      font-weight: 800;
       border: none;
-      border-radius: 50px;
+      border-radius: 60px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 40px rgba(245, 200, 66, 0.4);
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
     }
     
     .cta-button-secondary:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(245, 200, 66, 0.5);
+    }
+    
+    .countdown-container {
+      margin-top: 30px;
+      position: relative;
+    }
+    
+    .countdown-label {
+      font-size: 16px;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+    
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .countdown-item {
+      background: rgba(255,255,255,0.15);
+      padding: 15px 25px;
+      border-radius: 15px;
+      min-width: 80px;
+    }
+    
+    .countdown-number {
+      font-size: 32px;
+      font-weight: 900;
+      display: block;
+      color: var(--accent-gold);
+    }
+    
+    .countdown-unit {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--primary-gradient-start);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    
+    footer p {
+      opacity: 0.8;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    footer .footer-links {
+      margin-top: 15px;
+    }
+    
+    footer .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 13px;
+      transition: color 0.3s ease;
+    }
+    
+    footer .footer-links a:hover {
+      color: var(--accent-gold);
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 65px;
+      height: 65px;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #FFF;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      z-index: 100;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float img {
+      width: 36px;
+      height: 36px;
+    }
+    
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      bottom: 110px;
+      right: 35px;
+      background: var(--primary-gradient-mid);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      z-index: 100;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      text-decoration: none;
+    }
+    
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-top:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      background: var(--primary-gradient-start);
     }
     
     /* Responsive */
     @media (max-width: 768px) {
+      .urgency-bar {
+        font-size: 13px;
+        padding: 10px 15px;
+      }
+      
+      .hero {
+        padding: 60px 20px 80px;
+      }
+      
       .hero h1 {
         font-size: 32px;
       }
       
-      .hero p {
+      .hero p.subtitle {
         font-size: 18px;
       }
       
-      .cta-button {
-        padding: 16px 40px;
-        font-size: 18px;
+      .hero-features {
+        flex-direction: column;
+        gap: 15px;
       }
       
-      .benefits h2, .whats-inside h2, .social-proof h2, .guarantee h2, .final-cta h2 {
+      .cta-button, .cta-button-secondary {
+        padding: 18px 35px;
+        font-size: 16px;
+      }
+      
+      .price-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .current-price {
+        font-size: 36px;
+      }
+      
+      .author-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .problem-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .benefits h2, .whats-inside h2, .social-proof h2, .guarantee h2, .final-cta h2, .testimonials h2, .pricing h2, .faq h2 {
         font-size: 28px;
       }
       
@@ -446,56 +1362,56 @@
       }
       
       .stat-number {
-        font-size: 36px;
+        font-size: 40px;
       }
-    }
-
-    /* WhatsApp Floating Button */
-    .whatsapp-float {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      bottom: 40px;
-      right: 40px;
-      background-color: #25d366;
-      color: #FFF;
-      border-radius: 50px;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
-      z-index: 100;
-      transition: all 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .whatsapp-float:hover {
-      transform: translateY(-5px);
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-    }
-
-    .whatsapp-float img {
-        width: 36px;
-        height: 36px;
-    }
-
-    @media (max-width: 768px) {
-        .whatsapp-float {
-            width: 50px;
-            height: 50px;
-            bottom: 20px;
-            right: 20px;
-        }
-        .whatsapp-float img {
-            width: 28px;
-            height: 28px;
-        }
+      
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .guarantee-box {
+        padding: 40px 25px;
+      }
+      
+      .final-cta h2 {
+        font-size: 32px;
+      }
+      
+      .countdown {
+        gap: 10px;
+      }
+      
+      .countdown-item {
+        padding: 12px 18px;
+        min-width: 65px;
+      }
+      
+      .countdown-number {
+        font-size: 24px;
+      }
+      
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .whatsapp-float img {
+        width: 30px;
+        height: 30px;
+      }
+      
+      .scroll-top {
+        width: 45px;
+        height: 45px;
+        bottom: 90px;
+        right: 25px;
+      }
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
  <body>
   <!-- Schema.org structured data for rich snippets -->
@@ -564,221 +1480,518 @@
     });
   </script>
 
+  <!-- Urgency Bar -->
+  <div class="urgency-bar">
+    🔥 <span>OFERTA ESPECIAL:</span> Últimas unidades com <span>50% OFF</span> — Promoção acaba em breve! 🔥
+  </div>
+
   <!-- Hero Section -->
   <section class="hero" itemscope itemtype="https://schema.org/Product">
-   <div class="container">
-    <h1 id="main-title" itemprop="name">Fábrica de Histórias com IA</h1>
-    <p id="subtitle" itemprop="description">Crie histórias educativas personalizadas para seus filhos em minutos, ensinando valores importantes através de narrativas mágicas com ilustrações incríveis feitas por IA</p>
-    <button class="cta-button" id="cta-button-top" aria-label="Acessar ebook Fábrica de Histórias com IA">Quero Criar Histórias Agora! 🚀</button>
-   </div>
-  </section><!-- Benefits Section -->
+    <div class="floating-elements">
+      <span class="floating-star">⭐</span>
+      <span class="floating-star">✨</span>
+      <span class="floating-star">🌟</span>
+      <span class="floating-star">⭐</span>
+      <span class="floating-star">✨</span>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🤖 Powered by Inteligência Artificial</div>
+      <h1 id="main-title" itemprop="name">
+        <span class="highlight">Fábrica de Histórias</span><br>com IA
+      </h1>
+      <p class="subtitle" id="subtitle" itemprop="description">
+        Descubra como criar <strong>(e ilustrar)</strong> histórias com propósito em minutos usando Inteligência Artificial — mesmo sem nenhuma experiência técnica!
+      </p>
+      
+      <div class="hero-features">
+        <div class="hero-feature">
+          <span class="hero-feature-icon">✓</span>
+          <span>Método passo a passo</span>
+        </div>
+        <div class="hero-feature">
+          <span class="hero-feature-icon">✓</span>
+          <span>Prompts prontos para usar</span>
+        </div>
+        <div class="hero-feature">
+          <span class="hero-feature-icon">✓</span>
+          <span>Ilustrações profissionais</span>
+        </div>
+      </div>
+      
+      <div class="price-container">
+        <span class="original-price">De R$ 97,00</span>
+        <span class="current-price">R$ 19,90</span>
+        <span class="discount-badge">-79% OFF</span>
+      </div>
+      
+      <button class="cta-button" id="cta-button-top" aria-label="Acessar ebook Fábrica de Histórias com IA">
+        Quero Criar Histórias Agora! 
+        <span>🚀</span>
+      </button>
+      
+      <div class="cta-subtext">
+        <span>🔒</span> Compra 100% segura • Acesso imediato • Garantia de 7 dias
+      </div>
+    </div>
+  </section>
+
+  <!-- Author Section -->
+  <section class="author-section">
+    <div class="container">
+      <div class="author-content">
+        <div class="author-badge">
+          <div class="author-avatar">👨‍👧‍👦</div>
+          <span class="author-credential">Engenheiro & Pai de 3</span>
+        </div>
+        <div class="author-info">
+          <h3>Por Luiz Tozatti</h3>
+          <p>
+            Sou engenheiro, entusiasta de tecnologia e, acima de tudo, pai de 3 filhos. Desenvolvi este método após perceber o poder da IA para criar histórias personalizadas que ensinam valores importantes de forma lúdica e envolvente. Agora, quero compartilhar esse conhecimento com outros pais que desejam fortalecer o vínculo com seus filhos através de histórias únicas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem-section">
+    <div class="container">
+      <h2>Você se <span>identifica</span> com isso?</h2>
+      <p class="section-subtitle">São desafios que muitos pais enfrentam no dia a dia...</p>
+      
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-icon">😓</span>
+          <div>
+            <h4>Falta de tempo</h4>
+            <p>Rotina corrida e sem tempo para criar atividades educativas para os filhos</p>
+          </div>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">📚</span>
+          <div>
+            <h4>Histórias repetitivas</h4>
+            <p>Sempre os mesmos livros e histórias que já não prendem a atenção</p>
+          </div>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">🎨</span>
+          <div>
+            <h4>Sem habilidade artística</h4>
+            <p>Não sabe desenhar ou criar ilustrações para as histórias</p>
+          </div>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">💡</span>
+          <div>
+            <h4>Dificuldade para ensinar valores</h4>
+            <p>Quer transmitir valores mas não sabe como fazer de forma natural</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
   <section class="benefits">
-   <div class="container">
-    <h2>Por Que Você Precisa Deste Ebook?</h2>
-    <div class="benefits-grid">
-     <div class="benefit-card">
-      <div class="benefit-icon">
-       ⚡
+    <div class="container">
+      <h2>Por Que Você Precisa Deste Ebook?</h2>
+      <p class="section-subtitle">Transforme a educação dos seus filhos com histórias personalizadas e significativas</p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <h3 id="benefit-1-title">Método Passo a Passo</h3>
+          <p id="benefit-1-desc">Aprenda exatamente como usar IA para criar histórias educativas, mesmo sem conhecimento técnico. Do zero ao primeiro conto em minutos!</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📝</div>
+          <h3 id="benefit-2-title">Prompts Prontos para Usar</h3>
+          <p id="benefit-2-desc">Copie, cole e ajuste apenas o nome e idade da criança. Prompts testados e otimizados para resultados incríveis!</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎨</div>
+          <h3 id="benefit-3-title">Ilustrações Profissionais</h3>
+          <p id="benefit-3-desc">Crie ilustrações lindas e personalizadas com IA em segundos. Sem precisar saber desenhar!</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">❤️</div>
+          <h3>Ensine Valores Importantes</h3>
+          <p>Transmita honestidade, respeito, empatia e outros valores através de histórias envolventes que ficam na memória</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⏰</div>
+          <h3>Economize Tempo</h3>
+          <p>Crie histórias completas em minutos, não em horas ou dias. Mais tempo de qualidade com seus filhos!</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌟</div>
+          <h3>Momentos Únicos</h3>
+          <p>Fortaleça o vínculo com seus filhos através de histórias personalizadas que eles nunca vão esquecer</p>
+        </div>
       </div>
-      <h3 id="benefit-1-title">Método Passo a Passo</h3>
-      <p id="benefit-1-desc">Aprenda exatamente como usar IA para criar histórias educativas, mesmo sem conhecimento técnico</p>
-     </div>
-     <div class="benefit-card">
-      <div class="benefit-icon">
-       📝
-      </div>
-      <h3 id="benefit-2-title">Prompts Prontos para Usar</h3>
-      <p id="benefit-2-desc">Copie, cole e ajuste apenas o nome e idade da criança. Simples assim!</p>
-     </div>
-     <div class="benefit-card">
-      <div class="benefit-icon">
-       🎨
-      </div>
-      <h3 id="benefit-3-title">Ilustrações Profissionais</h3>
-      <p id="benefit-3-desc">Crie ilustrações lindas e personalizadas com IA em segundos</p>
-     </div>
-     <div class="benefit-card">
-      <div class="benefit-icon">
-       ❤️
-      </div>
-      <h3>Ensine Valores Importantes</h3>
-      <p>Transmita honestidade, respeito, empatia e outros valores através de histórias envolventes</p>
-     </div>
-     <div class="benefit-card">
-      <div class="benefit-icon">
-       ⏰
-      </div>
-      <h3>Economize Tempo</h3>
-      <p>Crie histórias completas em minutos, não em horas ou dias</p>
-     </div>
-     <div class="benefit-card">
-      <div class="benefit-icon">
-       🌟
-      </div>
-      <h3>Momentos Únicos</h3>
-      <p>Fortaleça o vínculo com seus filhos através de histórias personalizadas</p>
-     </div>
     </div>
-   </div>
-  </section><!-- What's Inside Section -->
+  </section>
+
+  <!-- What's Inside Section -->
   <section class="whats-inside">
-   <div class="container">
-    <h2>O Que Você Vai Receber</h2>
-    <div class="features-list">
-     <div class="feature-item"><span class="feature-check">✅</span>
-      <div class="feature-content">
-       <h4>Guia Completo de IA para Histórias</h4>
-       <p>Passo a passo detalhado de como usar ferramentas de IA para criar narrativas educativas</p>
+    <div class="container">
+      <h2>O Que Você Vai <span>Receber</span></h2>
+      <p class="section-subtitle">Um guia completo com tudo que você precisa para começar hoje</p>
+      
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Guia Completo de IA para Histórias</h4>
+            <p>Passo a passo detalhado de como usar ferramentas de IA para criar narrativas educativas personalizadas</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Tutorial de Ilustrações com IA</h4>
+            <p>Aprenda a criar ilustrações profissionais que encantam as crianças, mesmo sem saber desenhar</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Banco de Prompts Prontos</h4>
+            <p>Prompts testados e otimizados para diferentes idades, valores e temas educativos</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Exemplos Práticos Completos</h4>
+            <p>Histórias completas como exemplo para você se inspirar e adaptar</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-check">✅</span>
+          <div class="feature-content">
+            <h4>Dicas de Personalização Avançadas</h4>
+            <p>Como adaptar cada história para a personalidade única do seu filho</p>
+          </div>
+        </div>
       </div>
-     </div>
-     <div class="feature-item"><span class="feature-check">✅</span>
-      <div class="feature-content">
-       <h4>Tutorial de Ilustrações com IA</h4>
-       <p>Aprenda a criar ilustrações profissionais que encantam as crianças</p>
-      </div>
-     </div>
-     <div class="feature-item"><span class="feature-check">✅</span>
-      <div class="feature-content">
-       <h4>Exemplos Práticos</h4>
-       <p>Histórias completas como exemplo para você se inspirar</p>
-      </div>
-     </div>
-     <div class="feature-item"><span class="feature-check">✅</span>
-      <div class="feature-content">
-       <h4>Dicas de Personalização</h4>
-       <p>Como adaptar cada história para a personalidade única do seu filho</p>
-      </div>
-     </div>
     </div>
-   </div>
-  </section><!-- Social Proof Section -->
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>O Que Estão Dizendo</h2>
+      <p class="section-subtitle">Pais e mães que já transformaram a forma de contar histórias</p>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-content">
+            "Incrível! Consegui criar histórias maravilhosas para minha filha em minutos. Ela adora e sempre pede mais. Valeu cada centavo!"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">👩</div>
+            <div class="testimonial-info">
+              <h5>Maria Silva</h5>
+              <span>Mãe de 2 filhos</span>
+              <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-content">
+            "Como pai, sempre quis ensinar valores pros meus filhos de forma natural. Com esse ebook, criei histórias personalizadas que eles amam!"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">👨</div>
+            <div class="testimonial-info">
+              <h5>Carlos Mendes</h5>
+              <span>Pai de 3 filhos</span>
+              <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-content">
+            "Eu não sabia nada de IA e em menos de 1 hora já tinha criado a primeira história ilustrada. Meu filho ficou encantado ao se ver como personagem!"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">👩</div>
+            <div class="testimonial-info">
+              <h5>Ana Rodrigues</h5>
+              <span>Professora e mãe</span>
+              <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
   <section class="social-proof">
-   <div class="container">
-    <h2>Junte-se a Centenas de Pais Satisfeitos</h2>
-    <div class="stats">
-     <div class="stat-item"><span class="stat-number">500+</span> <span class="stat-label">Pais Usando</span>
-     </div>
-     <div class="stat-item"><span class="stat-number">2.000+</span> <span class="stat-label">Histórias Criadas</span>
-     </div>
-     <div class="stat-item"><span class="stat-number">4.9⭐</span> <span class="stat-label">Avaliação Média</span>
-     </div>
+    <div class="container">
+      <h2>Junte-se a Centenas de Pais Satisfeitos</h2>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Pais Usando</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2.000+</span>
+          <span class="stat-label">Histórias Criadas</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4.9⭐</span>
+          <span class="stat-label">Avaliação Média</span>
+        </div>
+      </div>
     </div>
-   </div>
-  </section><!-- Guarantee Section -->
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <h2>Aproveite a Oferta Especial</h2>
+      <p class="section-subtitle">Por tempo limitado, você pode adquirir o ebook completo com desconto exclusivo</p>
+      
+      <div class="pricing-card">
+        <div class="pricing-badge">-79% OFF</div>
+        <div class="pricing-header">
+          <h3>Fábrica de Histórias com IA</h3>
+          <div class="pricing-price">
+            <span class="pricing-original">R$ 97,00</span>
+            <span class="pricing-current"><span>R$</span> 19,90</span>
+          </div>
+        </div>
+        <div class="pricing-body">
+          <ul class="pricing-features">
+            <li><span>✓</span> Guia completo de IA para histórias</li>
+            <li><span>✓</span> Tutorial de ilustrações com IA</li>
+            <li><span>✓</span> Banco de prompts prontos</li>
+            <li><span>✓</span> Exemplos práticos completos</li>
+            <li><span>✓</span> Dicas de personalização</li>
+            <li><span>✓</span> Acesso vitalício</li>
+            <li><span>✓</span> Atualizações gratuitas</li>
+          </ul>
+          <div class="pricing-cta">
+            <button class="cta-button" id="cta-button-pricing" aria-label="Acessar ebook Fábrica de Histórias com IA">
+              Quero Começar Agora! 🚀
+            </button>
+            <p class="pricing-guarantee">
+              <span>🛡️</span> Garantia de 7 dias ou seu dinheiro de volta
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Section -->
   <section class="guarantee">
-   <div class="container">
-    <div class="guarantee-box">
-     <div class="guarantee-icon">
-      🛡️
-     </div>
-     <h2 id="guarantee-title">Garantia de 7 Dias</h2>
-     <p id="guarantee-desc">Experimente o ebook por 7 dias. Se você não ficar completamente satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas, sem complicações.</p>
-     <p><strong>Você não tem nada a perder e um mundo de histórias mágicas a ganhar!</strong></p>
+    <div class="container">
+      <div class="guarantee-box">
+        <div class="guarantee-icon">🛡️</div>
+        <h2 id="guarantee-title">Garantia Incondicional de 7 Dias</h2>
+        <p id="guarantee-desc">
+          Experimente o ebook por 7 dias completos. Se você não ficar <strong>completamente satisfeito</strong> por qualquer motivo, devolvemos <strong>100% do seu dinheiro</strong>. Sem perguntas, sem complicações, sem burocracia.
+        </p>
+        <div class="guarantee-highlight">
+          ✅ Você não tem NADA a perder!
+        </div>
+      </div>
     </div>
-   </div>
-  </section><!-- Final CTA Section -->
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq-list">
+        <div class="faq-item active">
+          <div class="faq-question">Preciso saber usar IA para aproveitar o ebook?</div>
+          <div class="faq-answer">Não! O ebook foi criado justamente para iniciantes. Você vai aprender do zero, com passo a passo detalhado e prompts prontos para copiar e colar.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Funciona para crianças de qualquer idade?</div>
+          <div class="faq-answer">Sim! O método permite criar histórias adaptadas para qualquer faixa etária, desde bebês até pré-adolescentes. Você aprende a ajustar complexidade, vocabulário e temas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Preciso pagar por ferramentas de IA?</div>
+          <div class="faq-answer">O ebook ensina a usar tanto ferramentas gratuitas quanto pagas. Você pode começar sem gastar nada além do ebook!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Como recebo o ebook?</div>
+          <div class="faq-answer">Imediatamente após a confirmação do pagamento, você recebe acesso por email para baixar o ebook em PDF. Acesso instantâneo, 24 horas por dia!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">E se eu não gostar?</div>
+          <div class="faq-answer">Você tem 7 dias de garantia incondicional. Se não gostar por qualquer motivo, devolvemos 100% do seu dinheiro, sem perguntas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
   <section class="final-cta">
-   <div class="container">
-    <h2>Comece a Criar Histórias Mágicas Hoje!</h2>
-    <p>Transforme a educação dos seus filhos com histórias personalizadas que ensinam valores importantes de forma divertida e envolvente</p>
-    <button class="cta-button-secondary" id="cta-button-bottom" aria-label="Acessar ebook Fábrica de Histórias com IA">Sim, Quero o Ebook Agora! 📚</button>
-   </div>
+    <div class="container">
+      <h2>Não Deixe Essa Oportunidade Passar!</h2>
+      <p>Transforme a educação dos seus filhos com histórias personalizadas que ensinam valores importantes de forma divertida e inesquecível</p>
+      
+      <div class="price-container">
+        <span class="original-price">De R$ 97,00</span>
+        <span class="current-price">R$ 19,90</span>
+        <span class="discount-badge">-79% OFF</span>
+      </div>
+      
+      <button class="cta-button-secondary" id="cta-button-bottom" aria-label="Acessar ebook Fábrica de Histórias com IA">
+        Sim, Quero o Ebook Agora! 📚
+      </button>
+      
+      <div class="countdown-container">
+        <p class="countdown-label">⏰ Oferta por tempo limitado:</p>
+        <div class="countdown">
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-hours">23</span>
+            <span class="countdown-unit">Horas</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-minutes">59</span>
+            <span class="countdown-unit">Min</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-seconds">59</span>
+            <span class="countdown-unit">Seg</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   
-  <!-- Additional SEO Footer Content -->
-  <footer style="background: #2d3748; color: white; padding: 20px 0; text-align: center; font-size: 14px;">
-   <div class="container">
-    <p>&copy; 2025 Fábrica de Histórias com IA. Todos os direitos reservados.</p>
-    <p style="margin-top: 10px;">Criação de histórias educativas | Inteligência Artificial para pais | Educação infantil personalizada</p>
-   </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Fábrica de Histórias com IA. Todos os direitos reservados.</p>
+      <p>Criação de histórias educativas | Inteligência Artificial para pais | Educação infantil personalizada</p>
+      <div class="footer-links">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
   </footer>
 
   <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/5516996133004" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
     <img src="images/WhatsApp_Logo_PNG_Sem_Fundo_Transparente.png" alt="WhatsApp">
   </a>
+  
+  <!-- Scroll to Top Button -->
+  <a href="#" class="scroll-top" id="scroll-top" aria-label="Voltar ao topo">↑</a>
 
   <script>
     const defaultConfig = {
       main_title: "Fábrica de Histórias com IA",
-      subtitle: "Crie histórias educativas personalizadas para seus filhos em minutos, ensinando valores importantes através de narrativas mágicas com ilustrações incríveis feitas por IA",
+      subtitle: "Descubra como criar (e ilustrar) histórias com propósito em minutos usando Inteligência Artificial — mesmo sem nenhuma experiência técnica!",
       cta_button: "Quero Criar Histórias Agora! 🚀",
       benefit_1: "Método Passo a Passo",
       benefit_2: "Prompts Prontos para Usar",
       benefit_3: "Ilustrações Profissionais",
-      guarantee_text: "Garantia de 7 Dias",
-      background_color: "#667eea",
+      guarantee_text: "Garantia Incondicional de 7 Dias",
+      background_color: "#088395",
       surface_color: "#ffffff",
-      text_color: "#2d3748",
-      primary_action_color: "#f6ad55",
-      secondary_action_color: "#48bb78"
+      text_color: "#1a202c",
+      primary_action_color: "#f5c842",
+      secondary_action_color: "#10b981"
     };
+
+    // FAQ Accordion functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const wasActive = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(faqItem => {
+          faqItem.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!wasActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+    
+    // Countdown Timer
+    function startCountdown() {
+      // Set countdown to reset every 24 hours
+      const now = new Date();
+      const endOfDay = new Date();
+      endOfDay.setHours(23, 59, 59, 999);
+      
+      function updateCountdown() {
+        const now = new Date();
+        const diff = endOfDay - now;
+        
+        if (diff <= 0) {
+          // Reset for next day
+          endOfDay.setDate(endOfDay.getDate() + 1);
+          return;
+        }
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
+      }
+      
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+    
+    startCountdown();
+    
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scroll-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     async function onConfigChange(config) {
       const mainTitle = config.main_title || defaultConfig.main_title;
       const subtitle = config.subtitle || defaultConfig.subtitle;
       const ctaButton = config.cta_button || defaultConfig.cta_button;
-      const priceText = config.price_text || defaultConfig.price_text;
       const benefit1 = config.benefit_1 || defaultConfig.benefit_1;
       const benefit2 = config.benefit_2 || defaultConfig.benefit_2;
       const benefit3 = config.benefit_3 || defaultConfig.benefit_3;
       const guaranteeText = config.guarantee_text || defaultConfig.guarantee_text;
-      
-      const backgroundColor = config.background_color || defaultConfig.background_color;
-      const surfaceColor = config.surface_color || defaultConfig.surface_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
-      const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
 
-      document.getElementById('main-title').textContent = mainTitle;
+      document.getElementById('main-title').innerHTML = `<span class="highlight">${mainTitle.split(' ').slice(0, 3).join(' ')}</span><br>${mainTitle.split(' ').slice(3).join(' ')}`;
       document.getElementById('subtitle').textContent = subtitle;
-      document.getElementById('cta-button-top').textContent = ctaButton;
+      document.getElementById('cta-button-top').innerHTML = ctaButton + ' <span>🚀</span>';
       document.getElementById('cta-button-bottom').textContent = ctaButton;
       
       document.getElementById('benefit-1-title').textContent = benefit1;
       document.getElementById('benefit-2-title').textContent = benefit2;
       document.getElementById('benefit-3-title').textContent = benefit3;
       document.getElementById('guarantee-title').textContent = guaranteeText;
-
-      const heroSections = document.querySelectorAll('.hero');
-      heroSections.forEach(section => {
-        section.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, #764ba2 100%)`;
-      });
-
-      const socialProofSection = document.querySelector('.social-proof');
-      if (socialProofSection) {
-        socialProofSection.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, #764ba2 100%)`;
-      }
-
-      const benefitCards = document.querySelectorAll('.benefit-card');
-      benefitCards.forEach(card => {
-        card.style.background = surfaceColor;
-      });
-
-      const guaranteeBox = document.querySelector('.guarantee-box');
-      if (guaranteeBox) {
-        guaranteeBox.style.background = surfaceColor;
-        guaranteeBox.style.borderColor = secondaryActionColor;
-      }
-
-      document.body.style.color = textColor;
-      
-      const allHeadings = document.querySelectorAll('h2, h3, h4');
-      allHeadings.forEach(heading => {
-        if (!heading.closest('.hero') && !heading.closest('.social-proof') && !heading.closest('.final-cta')) {
-          heading.style.color = textColor;
-        }
-      });
-
-      const ctaButtons = document.querySelectorAll('.cta-button');
-      ctaButtons.forEach(button => {
-        button.style.background = primaryActionColor;
-      });
-
-      const featureHeadings = document.querySelectorAll('.benefit-card h3, .feature-content h4');
-      featureHeadings.forEach(heading => {
-        heading.style.color = backgroundColor;
-      });
     }
 
     if (window.elementSdk) {
@@ -839,7 +2052,8 @@
       });
     }
 
-    document.getElementById('cta-button-top').addEventListener('click', () => {
+    // CTA Button click handlers
+    function handleCTAClick() {
       // Facebook Pixel - AddToCart event
       fbq('track', 'AddToCart', {
         content_name: 'Fábrica de Histórias com IA',
@@ -858,28 +2072,11 @@
       });
       
       window.open('https://pay.hotmart.com/F102879401K', '_blank', 'noopener,noreferrer');
-    });
+    }
 
-    document.getElementById('cta-button-bottom').addEventListener('click', () => {
-      // Facebook Pixel - AddToCart event
-      fbq('track', 'AddToCart', {
-        content_name: 'Fábrica de Histórias com IA',
-        content_category: 'Ebook',
-        content_type: 'product',
-        value: 47.00,
-        currency: 'BRL'
-      });
-      
-      // Facebook Pixel - InitiateCheckout event
-      fbq('track', 'InitiateCheckout', {
-        content_name: 'Fábrica de Histórias com IA',
-        content_category: 'Ebook',
-        value: 47.00,
-        currency: 'BRL'
-      });
-      
-      window.open('https://pay.hotmart.com/F102879401K', '_blank', 'noopener,noreferrer');
-    });
+    document.getElementById('cta-button-top').addEventListener('click', handleCTAClick);
+    document.getElementById('cta-button-bottom').addEventListener('click', handleCTAClick);
+    document.getElementById('cta-button-pricing').addEventListener('click', handleCTAClick);
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99c80c6a019aca8b',t:'MTc2MjgwMzkwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
 </html>
